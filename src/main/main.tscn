@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1dmwb3qu4fh1"]
+
+[ext_resource type="Script" path="res://src/main/main.gd" id="1_0emnb"]
+[ext_resource type="Script" path="res://src/navigation/navigation.gd" id="2_3bwtf"]
+[ext_resource type="PackedScene" uid="uid://baav0u0qyyf4n" path="res://src/unit/unit.tscn" id="3_ksaa3"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_7qegs"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_0emnb")
+unit_scene = ExtResource("3_ksaa3")
+
+[node name="navigation" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_7qegs")
+script = ExtResource("2_3bwtf")
+
+[node name="units" type="Node2D" parent="navigation"]
