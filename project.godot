@@ -40,3 +40,4 @@ config/icon="res://icon.svg"
 [autoload]
 
 Utils="*res://src/utils/utils.gd"
+Settings="*res://src/settings/settings.gd"

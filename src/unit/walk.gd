@@ -1,6 +1,11 @@
+# Walk
 extends State
 
-func update(delta: float) -> void:
+func go_towards_target(delta: float):
+	if !unit.agent.is_target_reachable():
+		unit.state.transition_to("idle")
+		return
+	
 	var agent = unit.agent
 	var next_location = agent.get_next_location()
 	#print("next location: ", next_location)
@@ -10,6 +15,12 @@ func update(delta: float) -> void:
 	
 	if !agent.avoidance_enabled:
 		unit.move_and_slide()
+
+func update(delta: float) -> void:
+	go_towards_target(delta)
+	
+	if unit.is_distance_to_unit(unit.target, unit.engage_distance):
+		unit.state.transition_to("engage")
 		
 func _on_agent_velocity_computed(safe_velocity):
 	unit.velocity = safe_velocity

@@ -1,4 +1,4 @@
-# Idle.gd
+# Idle
 extends State
 
 func enter(_msg := {}) -> void:

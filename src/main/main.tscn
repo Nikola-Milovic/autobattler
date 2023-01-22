@@ -15,3 +15,6 @@ navigation_polygon = SubResource("NavigationPolygon_7qegs")
 script = ExtResource("2_3bwtf")
 
 [node name="units" type="Node2D" parent="navigation"]
+
+[node name="unit" parent="." instance=ExtResource("3_ksaa3")]
+position = Vector2(987, 534)

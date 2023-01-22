@@ -1,13 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://baav0u0qyyf4n"]
+[gd_scene load_steps=9 format=3 uid="uid://baav0u0qyyf4n"]
 
 [ext_resource type="Script" path="res://src/unit/unit.gd" id="1_sprx1"]
 [ext_resource type="Texture2D" uid="uid://cq8bdh1buuhd2" path="res://assets/icon.svg" id="2_di3b2"]
 [ext_resource type="Script" path="res://src/unit/idle.gd" id="3_4aj7i"]
 [ext_resource type="Script" path="res://src/unit/state_machine.gd" id="3_nfovj"]
 [ext_resource type="Script" path="res://src/unit/walk.gd" id="4_c0qs3"]
+[ext_resource type="Script" path="res://src/unit/engage.gd" id="6_app2m"]
+[ext_resource type="Script" path="res://src/unit/attack.gd" id="7_m7pu2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v25i2"]
-radius = 16.0
+radius = 23.0
 
 [node name="unit" type="CharacterBody2D"]
 script = ExtResource("1_sprx1")
@@ -16,9 +18,11 @@ script = ExtResource("1_sprx1")
 shape = SubResource("CircleShape2D_v25i2")
 
 [node name="agent" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-target_desired_distance = 10.0
+path_desired_distance = 15.96
+target_desired_distance = 15.96
+path_max_distance = 16.0
 avoidance_enabled = true
+radius = 24.92
 
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -32,6 +36,13 @@ initial_state = NodePath("walk")
 script = ExtResource("3_4aj7i")
 
 [node name="walk" type="Node" parent="state_machine"]
+unique_name_in_owner = true
 script = ExtResource("4_c0qs3")
+
+[node name="engage" type="Node" parent="state_machine"]
+script = ExtResource("6_app2m")
+
+[node name="attack" type="Node" parent="state_machine"]
+script = ExtResource("7_m7pu2")
 
 [connection signal="velocity_computed" from="agent" to="state_machine/walk" method="_on_agent_velocity_computed"]

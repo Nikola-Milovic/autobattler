@@ -1,7 +1,5 @@
 extends NavigationRegion2D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	var size = DisplayServer.window_get_size()
 	var navigation_polygon : NavigationPolygon = self.navigation_polygon
